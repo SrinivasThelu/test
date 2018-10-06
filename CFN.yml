@@ -1,0 +1,20 @@
+Resources:
+ firstEC2Instance:
+  Type: AWS::EC2::Instance
+  Properties :
+      InstanceType: t2.micro
+      ImageId : ami-14c5486b
+      Tags: 
+      - Key   : Name
+        Value :  !Join [" ", [this, is, join, test]]
+      SecurityGroups:
+        - !Ref mySecurityGroup
+ mySecurityGroup:
+  Type: AWS::EC2::SecurityGroup
+  Properties :
+      GroupDescription: SecurityGroup
+      SecurityGroupIngress : 
+          - IpProtocol: tcp
+            FromPort   : 22
+            ToPort :   22
+            CidrIp: 0.0.0.0/0
